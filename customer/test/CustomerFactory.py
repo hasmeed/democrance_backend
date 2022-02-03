@@ -9,6 +9,6 @@ class CustomerFactory(django.DjangoModelFactory):
     email = Faker('email')
     first_name = Faker('first_name')
     last_name = Faker('last_name')
-    dob = Faker('dob')
+    dob = Faker('date')
 
     
