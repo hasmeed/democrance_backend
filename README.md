@@ -30,13 +30,19 @@ Once `pip` has finished downloading the dependencies:
 ```
 And navigate to `http://127.0.0.1:8000`
 
-## Walkthrough
+## Postman API Doc
 
-Before you interact with the application, go to GoCardless Sandbox and set up
-the Redirect URI in the Developer settings. To make it work with this
-application, use the value `http://127.0.0.1:8000/gocardless/confirm/`. This is to
-make sure you are redirected back to your site where the purchase is verified
-after you have made a purchase.
+Before you start interracting with the app. kindly check the link below for the 
+Postman API documentation to have a better understanding of the endpoints provided into the application 
+
+`https://documenter.getpostman.com/view/12073690/UVeFP7eA`
+
+## Admin Page 
+
+you can login into the admin by vising `http://127.0.0.1:8000/admin`
+username: admin 
+password: monalisa
+
 ## Tests
 
 To run the tests, `cd` into the directory where `manage.py` is:
