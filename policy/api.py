@@ -2,8 +2,8 @@ from rest_framework import permissions, generics, filters, status, views
 from policy import serializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from policy.models import DcPolicy
-from django.shortcuts import get_object_or_404
+from policy.models import DcPolicy, DcPolicyHistory
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 
 class PolicyQuoteView(APIView):
@@ -36,3 +36,36 @@ class PolicyQuoteView(APIView):
             return Response(data=serializers.DcPolicySerializer(policy).data, 
                             status=status.HTTP_200_OK)     
         return Response(data={}, status=status.HTTP_400_BAD_REQUEST)     
+
+
+class PolicyListView(generics.ListAPIView):
+    serializer_class = serializers.DcPolicySerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def get_queryset(self):
+        qs = DcPolicy.objects.all()
+        customer_id = self.request.GET.get('customer_id', None)
+        if customer_id:
+            qs = qs.filter(customer_id=customer_id)
+        return qs
+
+
+class PolicyDetailView(generics.RetrieveAPIView):
+    serializer_class = serializers.DcPolicySerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def get_object(self):
+        id = self.kwargs.get('id')
+        if id:
+            policy = get_object_or_404(DcPolicy, id=id)
+            return policy
+
+
+class PolicyHistoryDetailView(generics.ListAPIView):
+    serializer_class = serializers.DcPolicyStateHistorySerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def get_queryset(self):
+        id = self.kwargs.get('id')
+        policy = get_object_or_404(DcPolicy, id=id)
+        return policy.histories.all()

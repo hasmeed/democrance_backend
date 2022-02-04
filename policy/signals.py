@@ -1,5 +1,4 @@
-from email import policy
-from .models import DcPolicy, DcPolicyHistory
+from .models import DcPolicy
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
