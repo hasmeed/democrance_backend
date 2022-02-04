@@ -49,3 +49,11 @@ To run the tests, `cd` into the directory where `manage.py` is:
 ```sh
 (env)$ python manage.py test 
 ```
+
+## Future Enhancements
+
+- As time goes on, there might be need to dockerize this app to allow easy and seamless deployment across different platforms
+
+- We could also add authentication app to support customer login and signup as well as authorization 
+
+- We can also breakdown some of the apps into smaller module as the requirements grows in features
