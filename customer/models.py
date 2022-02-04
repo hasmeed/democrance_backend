@@ -9,7 +9,7 @@ class DcCustomer(models.Model):
     email = models.EmailField(_('Email Address'), max_length=254, unique=True, null=True)
     first_name = models.CharField(_("First Name"), max_length=200, db_index=True)
     last_name = models.CharField(_("First Name"), max_length=200)
-    dob = models.DateField(_("Date of birth"))
+    dob = models.CharField(_("Date of birth"), max_length=200, null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
